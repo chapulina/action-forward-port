@@ -11,21 +11,27 @@ echo ::endgroup::
 echo "$GITHUB_WORKSPACE"
 cd "$GITHUB_WORKSPACE"
 
+FROM_BRANCH=$1
+TO_BRANCH=$1
+echo "From: $FROM_BRANCH"
+echo "To: $TO_BRANCH"
+
 echo ::group::Checkout
+PORT_BRANCH=port_${FROM_BRANCH}_${TO_BRANCH}_`date '+%Y-%m-%d'`
 git fetch
-git checkout ${INPUT_FROM_BRANCH}
-git checkout ${INPUT_TO_BRANCH}
-git checkout -b port_${INPUT_FROM_BRANCH}_${INPUT_TO_BRANCH}_`date '+%Y-%m-%d'`
+git checkout ${FROM_BRANCH}
+git checkout ${TO_BRANCH}
+git checkout -b ${PORT_BRANCH}
 echo ::endgroup::
 
 echo ::group::Merge
-git merge ${INPUT_FROM_BRANCH}
+git merge ${FROM_BRANCH}
 git add --all
 echo ::endgroup::
 
 echo ::group::Commit and push
 git commit -c user.name="osrf-triage" -c user.email="sim@openrobotics.org" \
     --author="osrf-triage" \
-    -sam"${INPUT_FROM_BRANCH} ➡️  ${INPUT_TO_BRANCH}"
-git push
+    -sam"${FROM_BRANCH} ➡️  ${TO_BRANCH}"
+git push ${PORT_BRANCH}
 echo ::endgroup::
