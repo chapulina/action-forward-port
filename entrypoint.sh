@@ -12,7 +12,7 @@ echo "$GITHUB_WORKSPACE"
 cd "$GITHUB_WORKSPACE"
 
 FROM_BRANCH=$1
-TO_BRANCH=$1
+TO_BRANCH=$2
 echo "From: $FROM_BRANCH"
 echo "To: $TO_BRANCH"
 
@@ -31,7 +31,7 @@ echo ::endgroup::
 
 echo ::group::Commit and push
 git commit -c user.name="osrf-triage" -c user.email="sim@openrobotics.org" \
-    --author="osrf-triage" \
+    --author="osrf-triage <sim@openrobotics.org>" \
     -sam"${FROM_BRANCH} ➡️  ${TO_BRANCH}"
 git push ${PORT_BRANCH}
 echo ::endgroup::
