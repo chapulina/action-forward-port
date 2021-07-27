@@ -2,8 +2,8 @@
 
 set -eu
 
-sudo apt update
-sudp apt install git
+apt update
+apt install git
 
 git fetch
 git checkout ${INPUT_FROM_BRANCH}
