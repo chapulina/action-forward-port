@@ -1,0 +1,19 @@
+name: Forward-port Ignition
+description: 'Forward-port stable branches in Ignition libraries'
+
+author: Louise Poubel <louise@openrobotics.org>
+
+inputs:
+  from-branch:
+    description:
+    required: true
+  to-branch:
+    description:
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.from-branch }}
+    - ${{ inputs.to-branch }}
