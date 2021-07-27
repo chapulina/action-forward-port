@@ -5,6 +5,8 @@ set -eu
 apt update
 apt install -y git
 
+cd "$GITHUB_WORKSPACE"
+
 git fetch
 git checkout ${INPUT_FROM_BRANCH}
 git checkout ${INPUT_TO_BRANCH}
