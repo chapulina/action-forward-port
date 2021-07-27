@@ -2,6 +2,9 @@
 
 set -eu
 
+sudo apt update
+sudp apt install git
+
 git fetch
 git checkout ${INPUT_FROM_BRANCH}
 git checkout ${INPUT_TO_BRANCH}
