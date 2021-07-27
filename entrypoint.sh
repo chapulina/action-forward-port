@@ -10,6 +10,10 @@ echo ::endgroup::
 
 echo "$GITHUB_WORKSPACE"
 cd "$GITHUB_WORKSPACE"
+ls
+echo "$INPUT_REPOSITORY"
+cd "$INPUT_REPOSITORY"
+
 
 echo ::group::Checkout
 git fetch
