@@ -3,7 +3,7 @@
 set -eu
 
 apt update
-apt install git
+apt install -y git
 
 git fetch
 git checkout ${INPUT_FROM_BRANCH}
