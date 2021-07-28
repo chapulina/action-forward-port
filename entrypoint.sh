@@ -20,14 +20,12 @@ echo ::group::Checkout
 PORT_BRANCH=port_${FROM_BRANCH}_${TO_BRANCH}_`date '+%Y-%m-%d'`
 git fetch
 git checkout ${FROM_BRANCH}
-git pull origin ${FROM_BRANCH}
 git checkout -t origin/${TO_BRANCH}
-git pull origin ${TO_BRANCH}
 git checkout -b ${PORT_BRANCH}
 echo ::endgroup::
 
 echo ::group::Merge
-git merge ${FROM_BRANCH}
+git merge ${FROM_BRANCH} --allow-unrelated-histories
 git add --all
 echo ::endgroup::
 
