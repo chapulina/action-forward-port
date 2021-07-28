@@ -8,15 +8,16 @@ apt update
 apt install -y git
 echo ::endgroup::
 
-echo "$GITHUB_WORKSPACE"
+echo ::group::Checkout
 cd "$GITHUB_WORKSPACE"
+git config --global user.email "sim@openrobotics.org"
+git config --global user.name "osrf-triage"
 
 FROM_BRANCH=$1
 TO_BRANCH=$2
 echo "From: $FROM_BRANCH"
 echo "To: $TO_BRANCH"
 
-echo ::group::Checkout
 PORT_BRANCH=port_${FROM_BRANCH}_${TO_BRANCH}_`date '+%Y-%m-%d'`
 git fetch
 git checkout ${FROM_BRANCH}
@@ -30,8 +31,6 @@ git add --all
 echo ::endgroup::
 
 echo ::group::Commit and push
-git commit -c user.name="osrf-triage" -c user.email="sim@openrobotics.org" \
-    --author="osrf-triage <sim@openrobotics.org>" \
-    -sam"${FROM_BRANCH} ➡️  ${TO_BRANCH}"
+git commit -sm"${FROM_BRANCH} ➡️  ${TO_BRANCH}"
 git push ${PORT_BRANCH}
 echo ::endgroup::
