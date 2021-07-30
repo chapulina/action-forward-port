@@ -32,5 +32,5 @@ echo ::endgroup::
 
 echo ::group::Commit and push
 git commit -sm"${FROM_BRANCH} ➡️  ${TO_BRANCH}"
-git push ${PORT_BRANCH}
+git push origin ${PORT_BRANCH}
 echo ::endgroup::
