@@ -26,7 +26,7 @@ git checkout -b ${PORT_BRANCH}
 echo ::endgroup::
 
 echo ::group::Merge
-git merge ${FROM_BRANCH} --allow-unrelated-histories
+git merge ${FROM_BRANCH} --allow-unrelated-histories || true
 git add --all
 echo ::endgroup::
 
